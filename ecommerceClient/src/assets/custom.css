@@ -1,0 +1,75 @@
+/* Custom changed for bootstrap */
+.form-control:focus {
+    box-shadow: 0 0 0 0.075rem #f8f9fa !important;
+    border-color: rgba(0, 0, 0, 0.875) !important;
+}
+.slider-custom {
+    padding: 0 !important;
+    margin-top: 60px;
+}
+.slide-active {
+    opacity: 1 !important;
+}
+.text-shadow {
+    text-shadow: 0 0 4px rgb(0, 0, 0) !important;
+}
+.border-custom {
+    border-left: 1px solid rgb(255, 255, 255, 0.3);
+    border-right: 1px solid rgb(255, 255, 255, 0.3);
+}
+.btn-custom:active {
+    transform: scale(0.95) !important;
+}
+.card-custom {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.card-custom + .card-custom {
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+.amount-custom {
+    width: 35px !important;
+    height: 35px !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.amount-custom:active {
+    background-color: #d5d5d5;
+    transition: all 0.1s ease;
+}
+.form-custom {
+    padding: 0 20px !important;
+}
+#btnLogin {
+    margin-top: 30px;
+}
+.link-item {
+    text-decoration: none;
+    color: unset;
+}
+.link-item:hover {
+    color: unset;
+}
+.display-none {
+    display: none !important;
+}
+.text-capital {
+    text-transform: capitalize !important;
+}
+.user-link {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.user-name {
+    margin-left: 8px !important;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 414px) {
+    .user-name {
+        display: none;
+    }
+}
