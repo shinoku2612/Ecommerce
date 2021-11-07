@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import { Form, Row, Col, Button } from "react-bootstrap"
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/apiCall";
 
 
 const Container = styled.div`
@@ -37,14 +40,25 @@ const Submit = styled.div`
     // width: 100%;
     padding: 0 20px;
 `;
-// const Error = styled.span`
-//     color: red;
-// `;
+const Error = styled.span`
+    color: red;
+`;
 
 const Register = () => {
-    const handle = event => {
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+    const { isFetching, error } = useSelector(state => state.user);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
         const btnSignUp = document.getElementById("btnSignUp");
-        btnSignUp.disabled = !(event.target.checked);
+        btnSignUp.disabled = isFetching;
+        register(dispatch, { firstname, lastname, username, email, password });
     }
 
     return (
@@ -58,24 +72,24 @@ const Register = () => {
                     <Row className="mb-3 form-custom">
                         <Form.Group as={Col} controlId="formGridFirstName">
                             <Form.Label>First Name</Form.Label>
-                            <Form.Control type="text" placeholder="First Name" />
+                            <Form.Control type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridLastName">
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="text" placeholder="Last Name" />
+                            <Form.Control type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
                         </Form.Group>
                     </Row>
                     <Form.Group className="mb-3 form-custom" controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="mail" placeholder="Enter your email" />
+                        <Form.Control type="mail" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridUsername">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="mail" placeholder="Username" />
+                        <Form.Control type="mail" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridConfirmPassword">
                         <Form.Label>Confirm Password</Form.Label>
@@ -84,9 +98,10 @@ const Register = () => {
                     <Form.Group className="mb-3 form-custom" id="formGridCheckbox">
                         <Form.Check type="checkbox" label="Subscribe for Shopping" />
                     </Form.Group>
+                    {error && <Error>Something went wrong!</Error>}
                     <Submit>
                         <Button variant="dark" size="lg" className="w-100 btn-custom" id="btnSignUp"
-                            onChange={handle}
+                            onClick={handleRegister}
                         >
                             Sign Up
                         </Button>

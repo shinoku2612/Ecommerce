@@ -5,8 +5,9 @@ import { Badge } from '@material-ui/core';
 import { Form, FormControl, InputGroup } from 'react-bootstrap';
 import '../assets/custom.css';
 import { mobile } from '../responsive';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from "../redux/apiCall";
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
     position: fixed;
@@ -83,6 +84,13 @@ const Header = () => {
     const quantity = useSelector(state => state.cart.quantity);
     const user = useSelector(state => state.user.currentUser);
 
+    const dispatch = useDispatch();
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        logout(dispatch);
+    }
+
     return (
         <Container>
             <Wrapper>
@@ -107,40 +115,36 @@ const Header = () => {
                     </Link>
                 </Center>
                 {/* Non account */}
-                <Right className={user ? "display-none" : ""}>
-                    <Link to="/register" className="link-item">
-                        <MenuItems>Register</MenuItems>
-                    </Link>
-                    <Link to="/login" className="link-item">
-                        <MenuItems>Sign in</MenuItems>
-                    </Link>
-                    <Link to="/cart" className="link-item">
-                        <MenuItems>
-                            <Badge badgeContent={quantity} color="primary">
-                                <ShoppingCartOutlined></ShoppingCartOutlined>
-                            </Badge>
-                        </MenuItems>
-                    </Link>
-                </Right>
-                {/* With account */}
-                <Right className={!user ? "display-none" : ""}>
-                    <Link to="/" className="link-item user-link">
-                        <Avatar src="./android-chrome-192x192.png"></Avatar>
-                        <MenuItems className="text-capital user-name">{user.firstname}</MenuItems>
-                    </Link>
-                    <Link to="/" className="link-item">
-                        <MenuItems>Logout</MenuItems>
-                    </Link>
-                    <Link to="/cart" className="link-item">
-                        <MenuItems>
-                            <Badge badgeContent={quantity} color="primary">
-                                <ShoppingCartOutlined></ShoppingCartOutlined>
-                            </Badge>
-                        </MenuItems>
-                    </Link>
-                </Right>
+                {!user
+                    ? <Right>
+                        <Link to="/register" className="link-item">
+                            <MenuItems>Register</MenuItems>
+                        </Link>
+                        <Link to="/login" className="link-item">
+                            <MenuItems>Sign in</MenuItems>
+                        </Link>
+                    </Right>
+                    : <Right>
+                        <Link to="/" className="link-item user-link">
+                            <Avatar src="https://www.pokecommunity.com/customavatars/avatar655426_2.gif"></Avatar>
+                            <MenuItems className="text-capital user-name">{user.firstname}</MenuItems>
+                        </Link>
+                        <Link to="/" className="link-item"
+                            onClick={handleLogout}
+                        >
+                            <MenuItems>Logout</MenuItems>
+                        </Link>
+                        <Link to="/cart" className="link-item">
+                            <MenuItems>
+                                <Badge badgeContent={quantity} color="primary">
+                                    <ShoppingCartOutlined></ShoppingCartOutlined>
+                                </Badge>
+                            </MenuItems>
+                        </Link>
+                    </Right>
+                }
             </Wrapper>
-        </Container>
+        </Container >
     )
 }
 

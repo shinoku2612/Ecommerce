@@ -1,6 +1,6 @@
 import { Add, Remove } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -9,7 +9,6 @@ import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from '../requestMethods';
 import { useHistory } from 'react-router';
 import { removeProduct, decreaseProduct, increaseProduct } from "../redux/cartRedux";
-import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 
 const KEY = process.env.REACT_APP_STRIPE;
@@ -183,7 +182,7 @@ const Cart = () => {
 
             }
         };
-        stripeToken && cart.total >= 1 && makeRequest();
+        stripeToken && makeRequest();
     }, [stripeToken, cart.total, history]);
 
     const dispatch = useDispatch();
@@ -227,8 +226,8 @@ const Cart = () => {
                         </TopTexts>
 
                         <StripeCheckout
-                            name=""
-                            image=""
+                            name="Shin"
+                            image="./android-chrome-192x192.png"
                             billingAddress
                             shippingAddress
                             description={`Your total is $${cart.total}`}

@@ -50,7 +50,7 @@ const ProductList = () => {
     const cat = location.pathname.split("/")[2];
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
-    
+
     const handleFilters = (e) => {
         const value = e.target.value;
         setFilters(
@@ -60,7 +60,11 @@ const ProductList = () => {
                     ...filters,
                     [e.target.name]: value
                 });
-    }
+    };
+    const handleField = (e) => {
+        const field = e.target.value === "Field" ? "" : e.target.value;
+        window.location.replace(`/products/${field}`);
+    };
 
     return (
         <Container>
@@ -69,9 +73,21 @@ const ProductList = () => {
                 <FilterContainer>
                     <Filter>
                         <FilterText>Filter Books: </FilterText>
+                        <Select className={!cat ? "" : "d-none"} name="field"
+                            onChange={handleField}
+                            defaultValue="Field"
+                        >
+                            <Option value="Field" disabled>Field</Option>
+                            <Option value="frontend">Front-end</Option>
+                            <Option value="backend">Back-end</Option>
+                            <Option value="fullstack">Fullstack</Option>
+                        </Select>
                         {/* Front-end book */}
-                        <Select className={cat === "frontend" ? "" : "d-none"} name="language" onChange={handleFilters}>
-                            <Option disabled>Languge</Option>
+                        <Select className={cat === "frontend" ? "" : "d-none"} name="language"
+                            onChange={handleFilters}
+                            defaultValue="Language"
+                        >
+                            <Option value="Language" disabled>Languge</Option>
                             <Option value="all">All</Option>
                             <Option value="html-css">HTML-CSS</Option>
                             <Option value="jquery">jQuery</Option>
@@ -80,8 +96,11 @@ const ProductList = () => {
                             <Option value="vuejs">VueJS</Option>
                         </Select>
                         {/* Back-end book */}
-                        <Select className={cat === "backend" ? "" : "d-none"} name="language" onChange={handleFilters}>
-                            <Option disabled>Languge</Option>
+                        <Select className={cat === "backend" ? "" : "d-none"} name="language"
+                            onChange={handleFilters}
+                            defaultValue="Language"
+                        >
+                            <Option value="Language" disabled>Languge</Option>
                             <Option value="all">All</Option>
                             <Option value="java">Java Servlet</Option>
                             <Option value="asp">ASP .NET</Option>
@@ -90,8 +109,11 @@ const ProductList = () => {
                             <Option value="python">Python</Option>
                         </Select>
                         {/*Fullstack book */}
-                        <Select className={cat === "fullstack" ? "" : "d-none"} name="language" onChange={handleFilters}>
-                            <Option disabled>Languge</Option>
+                        <Select className={cat === "fullstack" ? "" : "d-none"} name="language"
+                            onChange={handleFilters}
+                            defaultValue="Language"
+                        >
+                            <Option value="Language" disabled>Language</Option>
                             <Option value="all">All</Option>
                             <Option value="reactnavie">React Native</Option>
                             <Option value="nodejs">NodeJS</Option>
@@ -102,15 +124,15 @@ const ProductList = () => {
                     </Filter>
                     <Filter>
                         <FilterText>Sort Books: </FilterText>
-                        <Select onChange={(e) => setSort(e.target.value)}>
-                            <Option disabled>Sort</Option>
+                        <Select onChange={(e) => setSort(e.target.value)} defaultValue="Sort">
+                            <Option value="Sort" disabled>Sort</Option>
                             <Option value="newest">Newest</Option>
                             <Option value="asc">Price (asc)</Option>
                             <Option value="desc">Price (desc)</Option>
                         </Select>
                     </Filter>
                 </FilterContainer>
-                <Products cat={cat} filters={filters} sort={sort}></Products>
+                <Products cat={cat} filters={filters} sort={sort} ></Products>
             </Main>
             <Footer></Footer>
         </Container>
