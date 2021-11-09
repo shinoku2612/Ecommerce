@@ -17,6 +17,7 @@ const Container = styled.div`
     z-index: 100;
     height: 60px;
     background-color: #343a40;
+    box-shadow: 0 2px 6px 0 rgba(233, 233, 233, 0.4);
     ${mobile({ height: "50px", position: "unset" })};
 `;
 const Wrapper = styled.div`
@@ -90,6 +91,9 @@ const Header = () => {
         e.preventDefault();
         logout(dispatch);
     }
+    const handleRedirect = () => {
+        window.location.replace(`/profile/${user._id}`);
+    }
 
     return (
         <Container>
@@ -125,7 +129,7 @@ const Header = () => {
                         </Link>
                     </Right>
                     : <Right>
-                        <Link to="/" className="link-item user-link">
+                        <Link to={`/profile/${user._id}`} className="link-item user-link" onClick={handleRedirect}>
                             <Avatar src="https://www.pokecommunity.com/customavatars/avatar655426_2.gif"></Avatar>
                             <MenuItems className="text-capital user-name">{user.firstname}</MenuItems>
                         </Link>

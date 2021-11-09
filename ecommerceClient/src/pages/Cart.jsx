@@ -250,7 +250,7 @@ const Cart = () => {
                                                 <ProductName><b>Product: </b>{product.title}</ProductName>
                                                 <Button
                                                     value={product._id}
-                                                    className="btn btn-dark btn-custom"
+                                                    className="btn btn-dark btn-custom btn-remove"
                                                     onClick={() => handleRemove(product)}
                                                 >Remove</Button>
                                             </Details>

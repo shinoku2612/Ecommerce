@@ -31,6 +31,7 @@ const ImgContainer = styled.div`
     flex: 1;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.3);
+    ${mobile({ border: "none", boxShadow: "none" })};
 `;
 const Image = styled.img`
     width: 100%;

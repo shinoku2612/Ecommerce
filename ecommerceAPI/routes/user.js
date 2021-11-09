@@ -3,6 +3,7 @@ const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = requir
 const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 // UPDATE USER
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
@@ -10,6 +11,15 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
         req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString();
     }
     try {
+        // Handle change password
+        if (req.body.curPassword || req.body.curPassword === "") {
+            const curUser = await User.findOne({ username: req.body.username });
+            const hashedPassword = CryptoJS.AES.decrypt(curUser.password, process.env.PASS_SEC);
+            const originPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+            if (req.body.curPassword !== originPassword) return res.status(500).json("Your current password is incorrect!");
+            req.body.curPassword = CryptoJS.AES.encrypt(req.body.curPassword, process.env.PASS_SEC).toString();
+        }
+
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
             {
@@ -17,7 +27,16 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
             },
             { new: true }
         );
-        res.status(200).json(updatedUser);
+        const accessToken = jwt.sign(
+            {
+                id: updatedUser._id,
+                isAdmin: updatedUser.isAdmin
+            },
+            process.env.JWT_SEC,
+            { expiresIn: "3d" },
+        );
+        const { password, ...others } = updatedUser._doc;
+        res.status(200).json({ ...others, accessToken });
     } catch (err) {
         res.status(500).json(err);
     }

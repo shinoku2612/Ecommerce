@@ -7,7 +7,8 @@
     padding: 0 !important;
     margin-top: 60px;
 }
-.slide-active {
+.slide-active,
+.fade-card {
     opacity: 1 !important;
 }
 .text-shadow {
@@ -66,10 +67,29 @@
 .user-name {
     margin-left: 8px !important;
 }
+.active-menu {
+    background-color: #d5d5d5 !important;
+}
+.btn-remove {
+    width: 140px !important;
+}
 
 /* MOBILE */
 @media only screen and (max-width: 414px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
     .user-name {
         display: none;
+    }
+    .active-menu {
+        border-bottom: none !important;
+        background-color: #fff !important;
+    }
+    .last-item {
+        width: 40% !important;
+    }
+    .mobile-active {
+        display: block !important;
     }
 }

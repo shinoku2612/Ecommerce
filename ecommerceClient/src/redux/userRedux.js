@@ -5,7 +5,10 @@ const userSlice = createSlice({
     initialState: {
         currentUser: null,
         isFetching: false,
-        error: false
+        error: false,
+        bDate: "01/01/2000",
+        gender: "Male",
+        phone: "0312645879"
     },
     reducers: {
         registerStart: (state) => {
@@ -35,6 +38,22 @@ const userSlice = createSlice({
             state.isFetching = false;
             state.currentUser = null;
             state.error = false;
+        },
+        updateStart: (state) => {
+            state.isFetching = true;
+        },
+        updateSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = action.payload;
+            state.error = false;
+            
+            state.bDate = action.payload.date;
+            state.gender = action.payload.gend;
+            state.phone = action.payload.phone;
+        },
+        updateFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
         }
     }
 });
@@ -42,6 +61,7 @@ const userSlice = createSlice({
 export const {
     registerStart, registerSuccess, registerFailure,
     loginStart, loginSuccess, loginFailure,
-    userLogout
+    userLogout,
+    updateStart, updateSuccess, updateFailure
 } = userSlice.actions;
 export default userSlice.reducer;

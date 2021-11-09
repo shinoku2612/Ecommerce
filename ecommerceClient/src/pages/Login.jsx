@@ -68,7 +68,7 @@ const Login = () => {
           </Form.Group>
           <Form.Group className="mb-3 form-custom" controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(Object(e.target.value))} />
           </Form.Group>
           {error && <Error>Something went wrong!</Error>}
           <Submit>

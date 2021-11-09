@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Categories from '../components/Categories'
 import Products from '../components/Products'
 import Slider from '../components/Slider'
 
