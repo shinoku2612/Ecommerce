@@ -3,9 +3,10 @@ import Header from "../components/Header";
 import { Form, Button } from "react-bootstrap"
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../redux/apiCall";
 import { useDispatch, useSelector } from "react-redux";
+import { refresh } from "../redux/userRedux";
 
 const Container = styled.div`
     width: 100vw;
@@ -40,6 +41,7 @@ const Submit = styled.div`
     padding: 0 20px;
 `;
 const Error = styled.span`
+  padding-left: 20px;
   color: red;
 `;
 
@@ -48,6 +50,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector(state => state.user);
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
 
   const handleLogin = (e) => {
     e.preventDefault();

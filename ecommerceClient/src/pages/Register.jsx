@@ -3,10 +3,10 @@ import Header from "../components/Header";
 import { Form, Row, Col, Button } from "react-bootstrap"
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/apiCall";
-
+import { refresh } from "../redux/userRedux";
 
 const Container = styled.div`
     min-height: 100vh;
@@ -41,6 +41,9 @@ const Submit = styled.div`
     padding: 0 20px;
 `;
 const Error = styled.span`
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-left: 20px;
     color: red;
 `;
 
@@ -53,6 +56,10 @@ const Register = () => {
 
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.user);
+
+    useEffect(() => {
+        dispatch(refresh());
+    }, [dispatch]);
 
     const handleRegister = (e) => {
         e.preventDefault();

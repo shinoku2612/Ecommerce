@@ -1,11 +1,12 @@
 import { ContactPhoneOutlined, LockOutlined, RecentActorsOutlined } from '@material-ui/icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import { mobile } from '../responsive';
 import '../assets/custom.css';
 import { update } from "../redux/apiCall";
+import { refresh } from "../redux/userRedux";
 
 const Container = styled.div`
     min-height: 100vh;
@@ -247,7 +248,9 @@ const InfoEdit = styled.input`
     ${mobile({ width: "100%", paddingLeft: "8px" })}
 `;
 const Error = styled.span`
-  color: red;
+    display: block;
+    margin-top: 10px;
+    color: red;
 `;
 
 const Profile = () => {
@@ -281,7 +284,7 @@ const Profile = () => {
     const username = user.username;
     const [curPassword, setCurPassword] = useState(null);
     const [password, setPassword] = useState("");
-    const { bDate, gender, phone, error } = useSelector(state => state.user);
+    const { bDate, gender, phone, error, isFetching } = useSelector(state => state.user);
 
     const [firstname, setFirstName] = useState(user.firstName);
     const [lastname, setLastName] = useState(user.lastName);
@@ -289,8 +292,12 @@ const Profile = () => {
     const [gend, setGend] = useState(gender);
     const [email, setEmail] = useState(user.email);
     const [contactPhone, setContactPhone] = useState(phone);
-
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(refresh());
+    }, [dispatch]);
+
     const userInfo = {
         date: date,
         gend: gend,
@@ -299,8 +306,12 @@ const Profile = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (curPassword) {
-            update(dispatch, { username, password, curPassword }, user._id);
+        if (curPassword && curPassword !== "") {
+            if (password !== "") {
+                update(dispatch, { username, password, curPassword, firstname, lastname, email }, user._id, userInfo);
+            } else {
+                alert("Please enter your new password!");
+            }
         } else {
             update(dispatch, { firstname, lastname, email }, user._id, userInfo);
         }
@@ -400,6 +411,7 @@ const Profile = () => {
                                     onClick={handleEditBasic}
                                 >Edit</EditButton>
                                 <EditButton
+                                    disabled={isFetching}
                                     className="btn btn-dark btn-custom edit-basic display-none"
                                     onClick={handleUpdate}>Update</EditButton>
                             </CardFooter>
@@ -431,6 +443,7 @@ const Profile = () => {
                                 >
                                     Edit</EditButton>
                                 <EditButton
+                                    disabled={isFetching}
                                     className="btn btn-dark btn-custom edit-contact display-none"
                                     onClick={handleUpdate}>Update</EditButton>
                             </CardFooter>
@@ -449,7 +462,10 @@ const Profile = () => {
                             </CardBody>
                             {error && <Error>Your current password is incorect!</Error>}
                             <CardFooter>
-                                <EditButton className="btn btn-dark btn-custom" onClick={handleUpdate}>Update</EditButton>
+                                <EditButton
+                                    disabled={isFetching}
+                                    className="btn btn-dark btn-custom"
+                                    onClick={handleUpdate}>Update</EditButton>
                             </CardFooter>
                         </ProfileCard>
                     </ProfileBody>

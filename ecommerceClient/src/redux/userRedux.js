@@ -11,8 +11,12 @@ const userSlice = createSlice({
         phone: "0312645879"
     },
     reducers: {
+        refresh: (state) => {
+            state.error = false;
+        },
         registerStart: (state) => {
             state.isFetching = true;
+            state.error = false;
         },
         registerSuccess: (state) => {
             state.isFetching = false;
@@ -24,6 +28,7 @@ const userSlice = createSlice({
         },
         loginStart: (state) => {
             state.isFetching = true;
+            state.error = false;
         },
         loginSuccess: (state, action) => {
             state.isFetching = false;
@@ -41,12 +46,13 @@ const userSlice = createSlice({
         },
         updateStart: (state) => {
             state.isFetching = true;
+            state.error = false;
         },
         updateSuccess: (state, action) => {
             state.isFetching = false;
             state.currentUser = action.payload;
             state.error = false;
-            
+
             state.bDate = action.payload.date;
             state.gender = action.payload.gend;
             state.phone = action.payload.phone;
@@ -61,7 +67,7 @@ const userSlice = createSlice({
 export const {
     registerStart, registerSuccess, registerFailure,
     loginStart, loginSuccess, loginFailure,
-    userLogout,
+    userLogout, refresh,
     updateStart, updateSuccess, updateFailure
 } = userSlice.actions;
 export default userSlice.reducer;
