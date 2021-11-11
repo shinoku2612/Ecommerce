@@ -58,6 +58,9 @@
 .text-capital {
     text-transform: capitalize !important;
 }
+.text-normal-custom {
+    text-transform: unset !important;
+}
 .user-link {
     display: flex;
     flex-wrap: nowrap;
