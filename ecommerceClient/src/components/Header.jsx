@@ -127,6 +127,13 @@ const Header = () => {
                         <Link to="/login" className="link-item">
                             <MenuItems>Sign in</MenuItems>
                         </Link>
+                        <Link to="/cart" className="link-item">
+                            <MenuItems>
+                                <Badge badgeContent={quantity} color="primary">
+                                    <ShoppingCartOutlined></ShoppingCartOutlined>
+                                </Badge>
+                            </MenuItems>
+                        </Link>
                     </Right>
                     : <Right>
                         <Link to={`/profile/${user._id}`} className="link-item user-link" onClick={handleRedirect}>
