@@ -1,0 +1,31 @@
+.productList {
+    flex: 4;
+}
+.data-grid {
+    user-select: none;
+}
+.data-product {
+    display: flex;
+    align-items: center;
+}
+.data-product-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.product-edit {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #343a40;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.product-delete {
+    color: #dc3545;
+    cursor: pointer;
+}

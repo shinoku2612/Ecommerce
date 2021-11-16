@@ -137,7 +137,7 @@ const Header = () => {
                     </Right>
                     : <Right>
                         <Link to={`/profile/${user._id}`} className="link-item user-link" onClick={handleRedirect}>
-                            <Avatar src="https://www.pokecommunity.com/customavatars/avatar655426_2.gif"></Avatar>
+                            <Avatar src="https://st.gamevui.com/images/image/2019/03/20/pikachu-200.jpg"></Avatar>
                             <MenuItems className="text-normal-custom user-name">{user.firstname}</MenuItems>
                         </Link>
                         <Link to="/" className="link-item"

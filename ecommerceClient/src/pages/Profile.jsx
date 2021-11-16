@@ -344,7 +344,7 @@ const Profile = () => {
             <Main>
                 <SideBar>
                     <HeaderBar>
-                        <Avatar src="https://www.pokecommunity.com/customavatars/avatar655426_2.gif"></Avatar>
+                        <Avatar src="https://st.gamevui.com/images/image/2019/03/20/pikachu-200.jpg"></Avatar>
                         <FullName>{`${user.firstname} ${user.lastname}`}</FullName>
                     </HeaderBar>
                     <Hr />

@@ -1,0 +1,49 @@
+.newUser {
+    flex: 4;
+    padding: 20px;
+}
+.newUser-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+.newUser-item {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.newUser-item>label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #979696;
+}
+.newUser-item>input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.newUser-gender>input {
+    margin-top: 15px;
+}
+.newUser-gender>label {
+    margin: 10px;
+    font-size: 18px;
+    color: #555;
+}
+.newUser-select {
+    height: 40px;
+    border-radius: 5px;
+}
+.newUser-btn {
+    width: 200px;
+    border: none;
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 10px 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 30px;
+    cursor: pointer;
+}
