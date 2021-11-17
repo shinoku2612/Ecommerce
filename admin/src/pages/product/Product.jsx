@@ -15,6 +15,8 @@ export default function Product() {
 
     const product = useSelector(state => state.product.products.find(product => product._id === productId));
 
+    const { isFetching } = useSelector(state => state.product);
+
     const MONTHS = useMemo(
         () => [
             "Jan",
@@ -59,7 +61,7 @@ export default function Product() {
         description: product.description,
         img: product.img,
         price: product.price,
-        inStock: product.inStock
+        inStock: true
     });
     const handleChange = e => {
         setNewProduct(prev => {
@@ -126,7 +128,7 @@ export default function Product() {
                             </label>
                             <input type="file" id="fileInput" style={{ display: "none" }} disabled />
                         </div>
-                        <button className="product-update-btn" onClick={handleUpdate}>Update</button>
+                        <button disabled={isFetching} className="product-update-btn" onClick={handleUpdate}>Update</button>
                     </div>
                 </form>
             </div>

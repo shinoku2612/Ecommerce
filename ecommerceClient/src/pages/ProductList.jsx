@@ -115,7 +115,7 @@ const ProductList = () => {
                         >
                             <Option value="Language" disabled>Language</Option>
                             <Option value="all">All</Option>
-                            <Option value="reactnavie">React Native</Option>
+                            <Option value="reactnative">React Native</Option>
                             <Option value="nodejs">NodeJS</Option>
                             <Option value="python">Python</Option>
                             <Option value="php">PHP</Option>

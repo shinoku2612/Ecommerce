@@ -8,6 +8,15 @@ import './sidebar.css';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
+
+    const menus = document.querySelectorAll(".sidebar-list-item");
+    menus.forEach(menu => {
+        menu.addEventListener("click", () => {
+            const activeMenu = document.querySelector(".active");
+            activeMenu.classList.remove("active");
+            menu.classList.add("active");
+        });
+    });
     return (
         <div className="sidebar">
             <div className="sidebar-wrapper">

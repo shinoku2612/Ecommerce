@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const user = useSelector(state => state.user.currentUser);
-  const admin = user.isAdmin;
+  const admin = user?.isAdmin;
   return (
     <Router>
       <Switch>

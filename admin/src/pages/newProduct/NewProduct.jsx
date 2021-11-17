@@ -3,7 +3,7 @@ import './newProduct.css';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../firebase';
 import { addProduct } from '../../redux/apiCall';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function NewProduct() {
 
@@ -11,6 +11,7 @@ export default function NewProduct() {
     const [file, setFile] = useState(null);
     const [cate, setCate] = useState(["fontend"]);
     const dispatch = useDispatch();
+    const { isFetching } = useSelector(state => state.product);
 
     const handleChange = e => {
         setInputs(prev => {
@@ -101,7 +102,7 @@ export default function NewProduct() {
                         <option value="false">No</option>
                     </select>
                 </div>
-                <button onClick={handleCreate} className="addProductButton">Create</button>
+                <button disabled={isFetching} onClick={handleCreate} className="addProductButton">Create</button>
             </form>
         </div>
     )

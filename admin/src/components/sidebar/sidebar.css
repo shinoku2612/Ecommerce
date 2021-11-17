@@ -29,7 +29,7 @@
 .sidebar-list-item.active,
 .sidebar-list-item:hover {
     border-color: rgba(0, 0, 0, 0.2);
-    background-color: #eaeaea;
+    background-color: #dadada;
 }
 .sidebar-icon {
     margin-right: 5px;
