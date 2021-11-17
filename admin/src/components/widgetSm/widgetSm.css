@@ -29,6 +29,8 @@
 .widgetSm-user {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    margin-left: 10px;
 }
 .widgetSm-userName {
     font-weight: 600;
