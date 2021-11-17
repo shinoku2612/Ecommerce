@@ -46,16 +46,19 @@ export default function ProductList() {
     ];
     return (
         <div className="productList">
-            <Link to="/newProduct" className="link-custom link-item">
-                <button className="product-add-btn">Create</button>
-            </Link>
+            <div className="product-title-container productList-header">
+                <h1 className="product-title">Products</h1>
+                <Link to="/newProduct" className="link-item">
+                    <button className="product-add-btn">Create</button>
+                </Link>
+            </div>
             <DataGrid
                 className="data-grid"
                 rows={products}
                 columns={columns}
                 getRowId={row => row._id}
                 pageSize={8}
-                rowsPerPageOptions={[5]}
+                rowsPerPageOptions={[8]}
                 checkboxSelection
                 disableSelectionOnClick
             />

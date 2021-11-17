@@ -3,13 +3,23 @@
     margin-top: 10px;
     overflow: auto;
 }
+
+.productList-header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+
 .data-grid {
     user-select: none;
 }
+
 .data-product {
     display: flex;
     align-items: center;
 }
+
 .data-product-img {
     width: 32px;
     height: 32px;
@@ -17,6 +27,7 @@
     object-fit: cover;
     margin-right: 10px;
 }
+
 .product-edit {
     border: none;
     outline: none;
@@ -27,12 +38,8 @@
     cursor: pointer;
     margin-right: 20px;
 }
+
 .product-delete {
     color: #dc3545;
     cursor: pointer;
-}
-.link-custom {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 10px 10px;
 }
