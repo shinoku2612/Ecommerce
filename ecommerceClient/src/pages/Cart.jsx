@@ -1,17 +1,13 @@
 import { Add, Remove } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { mobile } from '../responsive';
-import StripeCheckout from "react-stripe-checkout";
-import { userRequest } from '../requestMethods';
-import { useHistory } from 'react-router';
 import { removeProduct, decreaseProduct, increaseProduct } from "../redux/cartRedux";
 import { Link } from 'react-router-dom';
-
-const KEY = process.env.REACT_APP_STRIPE;
+import PayPal from '../components/PayPal';
 
 const Container = styled.div`
     min-height: 100vh;
@@ -126,7 +122,9 @@ const Summary = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     padding: 20px;
-    height: 50vh;
+    height: 60vh;
+    position: relative;
+    z-index: 1;
 `;
 const SummaryTitle = styled.h1`
     font-weight: 200;
@@ -164,26 +162,6 @@ const ShopButton = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart);
-    const [stripeToken, setStripeToken] = useState(null);
-    const history = useHistory();
-
-    const onToken = (token) => {
-        setStripeToken(token);
-    }
-    useEffect(() => {
-        const makeRequest = async () => {
-            try {
-                const res = await userRequest.post("/checkout/payment", {
-                    tokenId: stripeToken.id,
-                    amount: cart.total * 100
-                });
-                history.push("/success", { data: res.data });
-            } catch (err) {
-
-            }
-        };
-        stripeToken && makeRequest();
-    }, [stripeToken, cart.total, history]);
 
     const dispatch = useDispatch();
 
@@ -202,6 +180,9 @@ const Cart = () => {
             increaseProduct(product)
         );
     }
+
+    // PayPal checkout
+    const [checkout, setCheckout] = useState(false);
 
     return (
         <Container>
@@ -225,25 +206,23 @@ const Cart = () => {
                             <TopText>Your Favour Books(0)</TopText>
                         </TopTexts>
 
-                        <StripeCheckout
-                            name="Shin"
-                            image="./android-chrome-192x192.png"
-                            billingAddress
-                            shippingAddress
-                            description={`Your total is $${cart.total}`}
-                            amount={cart.total * 100}
-                            token={onToken}
-                            stripeKey={KEY}
-                        >
-                            <TopButton className="btn btn-dark btn-custom">Checkout Now</TopButton>
-                        </StripeCheckout>
+                        {/* {checkout ? (
+                            <PayPal />
+                        ) : (
+                            <TopButton
+                                className="btn btn-dark btn-custom"
+                                onClick={() => { setCheckout(true) }}
+                            >
+                                Checkout Now
+                            </TopButton>
+                        )} */}
                     </Top>
                     <Bottom className={cart.products.length === 0 ? "display-none" : ""}>
                         <Info>
                             {cart.products.map(product => (
                                 <>
                                     <Hr />
-                                    <Product>
+                                    <Product key={product._id}>
                                         <ProductDetail>
                                             <Image src={product.img} />
                                             <Details>
@@ -291,18 +270,16 @@ const Cart = () => {
                                 <SummaryItemText>Total</SummaryItemText>
                                 <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                             </SummaryItem>
-                            <StripeCheckout
-                                name=""
-                                image=""
-                                billingAddress
-                                shippingAddress
-                                description={`Your total is $${cart.total}`}
-                                amount={cart.total * 100}
-                                token={onToken}
-                                stripeKey={KEY}
-                            >
-                                <Button className="btn btn-dark btn-custom">Checkout Now</Button>
-                            </StripeCheckout>
+                            {checkout ? (
+                                <PayPal />
+                            ) : (
+                                <Button
+                                    className="btn btn-dark btn-custom"
+                                    onClick={() => { setCheckout(true) }}
+                                >
+                                    Checkout Now
+                                </Button>
+                            )}
                         </Summary>
                     </Bottom>
                 </Wrapper>
