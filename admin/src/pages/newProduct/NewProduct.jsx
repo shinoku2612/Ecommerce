@@ -90,7 +90,7 @@ export default function NewProduct() {
                 <div className="addProductItem">
                     <label>Categories</label>
                     <select name="categories" id="cat" defaultValue="fontend" onChange={handleCate}>
-                        <option value="fontend">Font-end</option>
+                        <option value="frontend">Front-end</option>
                         <option value="backend">Back-end</option>
                         <option value="fullstack">Fullstack</option>
                     </select>
