@@ -1,5 +1,7 @@
 .productList {
     flex: 4;
+    margin-top: 10px;
+    overflow: auto;
 }
 .data-grid {
     user-select: none;
@@ -28,4 +30,9 @@
 .product-delete {
     color: #dc3545;
     cursor: pointer;
+}
+.link-custom {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px 10px;
 }
