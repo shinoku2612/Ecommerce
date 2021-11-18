@@ -122,7 +122,7 @@ const Summary = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     padding: 20px;
-    height: 60vh;
+    height: fit-content;
     position: relative;
     z-index: 1;
 `;
@@ -162,6 +162,8 @@ const ShopButton = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart);
+    // PayPal checkout
+    const [checkout, setCheckout] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -169,20 +171,20 @@ const Cart = () => {
         dispatch(
             removeProduct(product)
         );
+        setCheckout(false);
     }
     const handleDecrease = (product) => {
         dispatch(
             decreaseProduct(product)
         );
+        setCheckout(false);
     }
     const handleIncrease = (product) => {
         dispatch(
             increaseProduct(product)
         );
+        setCheckout(false);
     }
-
-    // PayPal checkout
-    const [checkout, setCheckout] = useState(false);
 
     return (
         <Container>
@@ -193,9 +195,12 @@ const Cart = () => {
                     <Empty className={cart.products.length === 0 ? "" : "display-none"}>
                         <EmptyCart src="./shopping-cart.png" />
                         <h4>Your cart is currently empty!</h4>
-                        <Link to="/products">
-                            <ShopButton className="btn btn-dark btn-custom">SHOP NOW</ShopButton>
-                        </Link>
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Link to="/orders" className="m-3 btn btn-outline-dark btn-custom">GO TO SHOPPING HISTORY</Link>
+                            <Link to="/products">
+                                <ShopButton className="m-3 btn btn-dark btn-custom">SHOP NOW</ShopButton>
+                            </Link>
+                        </div>
                     </Empty>
                     <Top className={cart.products.length === 0 ? "display-none" : ""}>
                         <Link to="/products">
@@ -205,17 +210,13 @@ const Cart = () => {
                             <TopText>Shopping Cart({cart.quantity})</TopText>
                             <TopText>Your Favour Books(0)</TopText>
                         </TopTexts>
-
-                        {/* {checkout ? (
-                            <PayPal />
-                        ) : (
+                        <Link to="/orders">
                             <TopButton
                                 className="btn btn-dark btn-custom"
-                                onClick={() => { setCheckout(true) }}
                             >
-                                Checkout Now
+                                Shopping History
                             </TopButton>
-                        )} */}
+                        </Link>
                     </Top>
                     <Bottom className={cart.products.length === 0 ? "display-none" : ""}>
                         <Info>
@@ -246,7 +247,7 @@ const Cart = () => {
 
                                                 </Add>
                                             </ProductAmountContainer>
-                                            <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+                                            <ProductPrice>$ {Math.round(product.price * product.quantity * 100) / 100}</ProductPrice>
                                         </PriceDetail>
                                     </Product>
                                 </>

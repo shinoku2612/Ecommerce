@@ -55,9 +55,14 @@ const cartSlice = createSlice({
                 state.total += state.products[itemIndex].price;
                 state.total = Math.round(state.total * 100) / 100;
             }
+        },
+        checkoutSuccess: (state) => {
+            state.products = [];
+            state.quantity = 0;
+            state.total = 0;
         }
     }
 });
 
-export const { addProduct, removeProduct, decreaseProduct, increaseProduct } = cartSlice.actions;
+export const { addProduct, removeProduct, decreaseProduct, increaseProduct, checkoutSuccess } = cartSlice.actions;
 export default cartSlice.reducer;

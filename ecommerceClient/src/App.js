@@ -16,6 +16,8 @@ import {
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Profile from './pages/Profile';
+import Order from './pages/Order';
+import OrderDetail from './pages/OrderDetail';
 
 function App() {
   const user = useSelector(state => state.user.currentUser);
@@ -38,6 +40,12 @@ function App() {
         </Route>
         <Route path="/success">
           <Success></Success>
+        </Route>
+        <Route path="/orders">
+          <Order></Order>
+        </Route>
+        <Route path="/order/:id">
+          <OrderDetail></OrderDetail>
         </Route>
         <Route path="/login">
           {

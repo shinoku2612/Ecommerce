@@ -9,7 +9,7 @@ export default function NewProduct() {
 
     const [inputs, setInputs] = useState({});
     const [file, setFile] = useState(null);
-    const [cate, setCate] = useState(["fontend"]);
+    const [cate, setCate] = useState(["frontend"]);
     const dispatch = useDispatch();
     const { isFetching } = useSelector(state => state.product);
 
@@ -89,7 +89,7 @@ export default function NewProduct() {
                 </div>
                 <div className="addProductItem">
                     <label>Categories</label>
-                    <select name="categories" id="cat" defaultValue="fontend" onChange={handleCate}>
+                    <select name="categories" id="cat" defaultValue="frontend" onChange={handleCate}>
                         <option value="frontend">Front-end</option>
                         <option value="backend">Back-end</option>
                         <option value="fullstack">Fullstack</option>

@@ -6,8 +6,10 @@ import {
 } from '@material-ui/icons';
 import './sidebar.css';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export default function Sidebar() {
+    const location = useLocation().pathname;
 
     const menus = document.querySelectorAll(".sidebar-list-item");
     menus.forEach(menu => {
@@ -24,7 +26,7 @@ export default function Sidebar() {
                     <h3 className="sidebar-title">Dashboard</h3>
                     <ul className="sidebar-list">
                         <Link to="/" className="link-item">
-                            <li className="sidebar-list-item active">
+                            <li className={location === "/" ? "sidebar-list-item active" : "sidebar-list-item"}>
                                 <LineStyleOutlined className="sidebar-icon" /> Home
                             </li>
                         </Link>
@@ -40,12 +42,12 @@ export default function Sidebar() {
                     <h3 className="sidebar-title">Quick Menu</h3>
                     <ul className="sidebar-list">
                         <Link to="/users" className="link-item">
-                            <li className="sidebar-list-item">
+                            <li className={location === "/users" ? "sidebar-list-item active" : "sidebar-list-item"}>
                                 <PermIdentityOutlined className="sidebar-icon" /> Users
                             </li>
                         </Link>
                         <Link to="/products" className="link-item">
-                            <li className="sidebar-list-item">
+                            <li className={location === "/products" ? "sidebar-list-item active" : "sidebar-list-item"}>
                                 <StorefrontOutlined className="sidebar-icon" /> Products
                             </li>
                         </Link>
@@ -86,6 +88,6 @@ export default function Sidebar() {
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
