@@ -10,7 +10,7 @@ const OrderDetail = () => {
     const location = useLocation();
     const orderId = location.pathname.split("/")[2];
     const order = location.state?.order;
-    console.log(order)
+    // console.log(order)
 
     const orderProduct = location.state?.order.products;
     const [products, setProducts] = useState([]);
@@ -51,9 +51,9 @@ const OrderDetail = () => {
                                         />
                                         {product.title}
                                     </td>
-                                    <td>{product.price}</td>
+                                    <td>$ {product.price}</td>
                                     <td>{orderProduct[products.indexOf(product)]?.quantity}</td>
-                                    <td>
+                                    <td> $
                                         {
                                             Math.round(
                                                 product.price * orderProduct[products.indexOf(product)]?.quantity * 100
@@ -67,7 +67,7 @@ const OrderDetail = () => {
                             <tr className="fw-bold">
                                 <td colSpan="2"></td>
                                 <td>TOTAL: </td>
-                                <td>{order.amount}</td>
+                                <td>$ {order.amount}</td>
                             </tr>
                         </tfoot>
                     </table>
