@@ -196,7 +196,7 @@ const Cart = () => {
                         <EmptyCart src="./shopping-cart.png" />
                         <h4>Your cart is currently empty!</h4>
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Link to="/orders" className="m-3 btn btn-outline-dark btn-custom">GO TO SHOPPING HISTORY</Link>
+                            <a href="/orders" className="m-3 btn btn-outline-dark btn-custom">GO TO SHOPPING HISTORY</a>
                             <Link to="/products">
                                 <ShopButton className="m-3 btn btn-dark btn-custom">SHOP NOW</ShopButton>
                             </Link>
@@ -210,13 +210,13 @@ const Cart = () => {
                             <TopText>Shopping Cart({cart.quantity})</TopText>
                             <TopText>Your Favour Books(0)</TopText>
                         </TopTexts>
-                        <Link to="/orders">
+                        <a href="/orders">
                             <TopButton
                                 className="btn btn-dark btn-custom"
                             >
                                 Shopping History
                             </TopButton>
-                        </Link>
+                        </a>
                     </Top>
                     <Bottom className={cart.products.length === 0 ? "display-none" : ""}>
                         <Info>

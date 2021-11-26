@@ -20,7 +20,7 @@ export default function Feature() {
     return (
         <div className="feature">
             <div className="feature-item">
-                <span className="feature-title">Revanue</span>
+                <span className="feature-title">Revenue</span>
                 <div className="feature-money-container">
                     <span className="feature-money">$ {income[1]?.total}</span>
                     <span className="feature-money-rate">
