@@ -29,3 +29,10 @@
     color: #dc3545;
     cursor: pointer;
 }
+.admin {
+    color: #3bb077;
+    font-weight: bold;
+}
+.guest {
+    color: #d95087;
+}
