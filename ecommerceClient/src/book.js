@@ -31,19 +31,19 @@ export const sliderItems = [
 export const categories = [
     {
         id: 1,
-        img: "https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.15752-9/250494867_1016374322427578_5567827145723867184_n.png?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=OSWXsD0PTEEAX-GtYyl&_nc_ht=scontent.fsgn8-1.fna&oh=5134a542e1b584d4f556633942bf3736&oe=61A7814D",
+        img: "https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.15752-9/250494867_1016374322427578_5567827145723867184_n.png?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=yA4t3VlolF8AX8ZfQis&tn=lz1iIsyaGwFDaEle&_nc_ht=scontent.fsgn8-1.fna&oh=1f9655e0c2042bb3944e5181a85d00d0&oe=61CF0E4D",
         title: "Front-end Development",
         cat: "frontend"
     },
     {
         id: 2,
-        img: "https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/251467563_401751998110401_5366252270500893970_n.png?_nc_cat=111&ccb=1-5&_nc_sid=ae9488&_nc_ohc=qY4adFPQXnQAX_GoJK-&_nc_ht=scontent.fsgn8-2.fna&oh=bfb35921defd743d51dea7ed65d59836&oe=61A751BB",
+        img: "https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/251467563_401751998110401_5366252270500893970_n.png?_nc_cat=111&ccb=1-5&_nc_sid=ae9488&_nc_ohc=aSAiJywpC5MAX98jiM8&_nc_ht=scontent.fsgn8-2.fna&oh=4a02eae924d56934db0478982b6363a9&oe=61CEDEBB",
         title: "Back-end Development",
         cat: "backend"
     },
     {
         id: 3,
-        img: "https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.15752-9/250525054_311057587517101_4618269932263952142_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ae9488&_nc_ohc=qYlbDcFeOL0AX-WkZqQ&_nc_ht=scontent.fsgn8-1.fna&oh=320ec71653b4c1eeb84fa9737ed27d6d&oe=61A824A1",
+        img: "https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.15752-9/250525054_311057587517101_4618269932263952142_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ae9488&_nc_ohc=AYHqmXlAeggAX-Qz6F6&_nc_ht=scontent.fsgn8-1.fna&oh=8733205095b3c7cf1186b8405bc68bdc&oe=61CFB1A1",
         title: "Fullstack Development",
         cat: "fullstack"
     },

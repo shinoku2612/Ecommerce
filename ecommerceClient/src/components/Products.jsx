@@ -14,7 +14,7 @@ const Container = styled.div`
     ${mobile({ padding: "0 0 0 2%" })};
 `;
 
-const Products = ({ cat, filters, sort }) => {
+const Products = ({ cat, filters, sort, query }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -24,7 +24,10 @@ const Products = ({ cat, filters, sort }) => {
         const res = await axios.get(
           cat
             ? `http://localhost:5000/api/products?categories=${cat}`
-            : "http://localhost:5000/api/products"
+            : query
+              ? `http://localhost:5000/api/products${query}`
+              : "http://localhost:5000/api/products"
+
         );
         setProducts(res.data);
       } catch (err) {
@@ -32,7 +35,7 @@ const Products = ({ cat, filters, sort }) => {
       }
     };
     getProducts();
-  }, [cat]);
+  }, [cat, query]);
 
   useEffect(() => {
     cat &&

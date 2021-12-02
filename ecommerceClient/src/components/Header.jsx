@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
-import { Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import '../assets/custom.css';
 import { mobile } from '../responsive';
 import { Link } from 'react-router-dom';
@@ -85,6 +85,8 @@ const Header = () => {
     const quantity = useSelector(state => state.cart.quantity);
     const user = useSelector(state => state.user.currentUser);
 
+    const searchRef = useRef();
+
     const dispatch = useDispatch();
 
     const handleLogout = (e) => {
@@ -94,6 +96,14 @@ const Header = () => {
     const handleRedirect = () => {
         window.location.replace(`/profile/${user._id}`);
     }
+    const handleSearch = () => {
+        window.location.replace(`/products?language=${searchRef.current.value}`);
+    }
+    const handleSearchByEnter = (e) => {
+        if (e.which === 13) {
+            window.location.replace(`/products?language=${searchRef.current.value}`);
+        }
+    }
 
     return (
         <Container>
@@ -101,15 +111,21 @@ const Header = () => {
                 <Left>
                     <InputGroup id="searchBar">
                         <FormControl
+                            ref={searchRef}
                             id="searchInput"
                             placeholder="Search..."
                             aria-label="Search"
                             aria-describedby="basic-addon"
+                            onKeyPress={handleSearchByEnter}
                         />
                         <InputGroup.Text style={{ padding: 0 }}>
-                            <Form.Label htmlFor="searchInput" id="basic-addon" style={{ padding: "0.375rem 0.75rem", marginBottom: 0 }}>
+                            <Button
+                                variant="secondary" id="basic-addon"
+                                style={{ padding: "0.375rem 0.75rem", marginBottom: 0 }}
+                                onClick={handleSearch}
+                            >
                                 <Search></Search>
-                            </Form.Label>
+                            </Button>
                         </InputGroup.Text>
                     </InputGroup>
                 </Left>

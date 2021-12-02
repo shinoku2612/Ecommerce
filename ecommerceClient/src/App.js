@@ -42,10 +42,14 @@ function App() {
           <Success></Success>
         </Route>
         <Route path="/orders">
-          <Order></Order>
+          {
+            !user ? <Redirect to="/" /> : <Order></Order>
+          }
         </Route>
         <Route path="/order/:id">
-          <OrderDetail></OrderDetail>
+          {
+            !user ? <Redirect to="/" /> : <OrderDetail></OrderDetail>
+          }
         </Route>
         <Route path="/login">
           {

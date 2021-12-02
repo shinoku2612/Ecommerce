@@ -79,28 +79,28 @@ const Register = () => {
                     <Row className="mb-3 form-custom">
                         <Form.Group as={Col} controlId="formGridFirstName">
                             <Form.Label>First Name</Form.Label>
-                            <Form.Control type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
+                            <Form.Control required="true" type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridLastName">
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
+                            <Form.Control required="true" type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
                         </Form.Group>
                     </Row>
                     <Form.Group className="mb-3 form-custom" controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="mail" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+                        <Form.Control required="true" type="mail" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridUsername">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="mail" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                        <Form.Control required="true" type="mail" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Control required="true" minLength="6" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridConfirmPassword">
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password" placeholder="Confirm Password" />
+                        <Form.Control required="true" type="password" placeholder="Confirm Password" />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" id="formGridCheckbox">
                         <Form.Check type="checkbox" label="Subscribe for Shopping" />

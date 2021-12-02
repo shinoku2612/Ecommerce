@@ -50,7 +50,7 @@ const ProductList = () => {
     const cat = location.pathname.split("/")[2];
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
-
+    
     const handleFilters = (e) => {
         const value = e.target.value;
         setFilters(
@@ -132,7 +132,7 @@ const ProductList = () => {
                         </Select>
                     </Filter>
                 </FilterContainer>
-                <Products cat={cat} filters={filters} sort={sort} ></Products>
+                <Products cat={cat} filters={filters} sort={sort} query={location.search} ></Products>
             </Main>
             <Footer></Footer>
         </Container>
