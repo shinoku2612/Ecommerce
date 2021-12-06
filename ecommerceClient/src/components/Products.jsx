@@ -13,6 +13,17 @@ const Container = styled.div`
     // justify-content: space-evenly;
     ${mobile({ padding: "0 0 0 2%" })};
 `;
+const NotFound = styled.div`
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+const Notification = styled.h2`
+    text-align: center;
+    letter-spacing: 1px;
+    color: #d3d3d3;
+`;
 
 const Products = ({ cat, filters, sort, query }) => {
   const [products, setProducts] = useState([]);
@@ -64,12 +75,16 @@ const Products = ({ cat, filters, sort, query }) => {
     }
   }, [sort]);
   return (
-    <Container>
-      {cat
-        ? filteredProducts.map(item => (<Product item={item} key={item._id} />))
-        : products.slice(0, 8).map(item => (<Product item={item} key={item._id} />))
-      }
-    </Container>
+    products.length === 0
+      ? <NotFound>
+          <Notification>Products not found...</Notification>
+        </NotFound>
+      : <Container>
+        {cat
+          ? filteredProducts.map(item => (<Product item={item} key={item._id} />))
+          : products.slice(0, 8).map(item => (<Product item={item} key={item._id} />))
+        }
+      </Container>
   )
 }
 

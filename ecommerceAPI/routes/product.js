@@ -68,7 +68,9 @@ router.get("/", async (req, res) => {
                 }
             });
         } else if (qLanguage) {
-            products = await Product.find({ "language": qLanguage });
+            products = await Product.find({
+                language: { '$regex': qLanguage }
+            });
         } else {
             products = await Product.find();
         }

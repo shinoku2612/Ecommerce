@@ -91,7 +91,7 @@ const ProductList = () => {
                             <Option value="all">All</Option>
                             <Option value="html-css">HTML-CSS</Option>
                             <Option value="jquery">jQuery</Option>
-                            <Option value="js">JavaScript</Option>
+                            <Option value="js-javascript">JavaScript</Option>
                             <Option value="reactjs">ReactJS</Option>
                             <Option value="vuejs">VueJS</Option>
                         </Select>

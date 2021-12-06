@@ -38,6 +38,9 @@ const Left = styled.div`
 `;
 
 const Center = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
     text-align: center;
     ${mobile({ flex: "0", marginRight: "8%" })};
@@ -47,6 +50,7 @@ const Logo = styled.div`
     cursor: pointer;
     transition: color 0.3s ease;
     user-select: none;
+    width: fit-content;
 
     &:hover {
         color: #17a2b8;

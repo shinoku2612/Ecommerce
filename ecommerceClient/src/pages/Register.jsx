@@ -53,6 +53,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
 
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.user);
@@ -65,7 +66,12 @@ const Register = () => {
         e.preventDefault();
         const btnSignUp = document.getElementById("btnSignUp");
         btnSignUp.disabled = isFetching;
-        register(dispatch, { firstname, lastname, username, email, password });
+        if (password === passwordConfirm) {
+            register(dispatch, { firstname, lastname, username, email, password });
+        } else {
+            alert("Password mismatch!");
+            return;
+        }
     }
 
     return (
@@ -75,40 +81,37 @@ const Register = () => {
                 <Logo src="./android-chrome-192x192.png" />
                 <Title>Sign up</Title>
                 <Description>Shopping, get support, and review books.</Description>
-                <Form action="#" >
+                <Form onSubmit={handleRegister} >
                     <Row className="mb-3 form-custom">
                         <Form.Group as={Col} controlId="formGridFirstName">
                             <Form.Label>First Name</Form.Label>
-                            <Form.Control required="true" type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
+                            <Form.Control required type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridLastName">
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control required="true" type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
+                            <Form.Control required type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
                         </Form.Group>
                     </Row>
                     <Form.Group className="mb-3 form-custom" controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control required="true" type="mail" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+                        <Form.Control required type="mail" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridUsername">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control required="true" type="mail" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                        <Form.Control required type="mail" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control required="true" minLength="6" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Control required minLength="6" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3 form-custom" controlId="formGridConfirmPassword">
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control required="true" type="password" placeholder="Confirm Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3 form-custom" id="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Subscribe for Shopping" />
+                        <Form.Control required type="password" placeholder="Confirm Password" onChange={(e) => setPasswordConfirm(e.target.value)} />
                     </Form.Group>
                     {error && <Error>Something went wrong!</Error>}
                     <Submit>
                         <Button variant="dark" size="lg" className="w-100 btn-custom" id="btnSignUp"
-                            onClick={handleRegister}
+                            type="submit"
                         >
                             Sign Up
                         </Button>

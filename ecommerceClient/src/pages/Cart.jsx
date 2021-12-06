@@ -221,9 +221,9 @@ const Cart = () => {
                     <Bottom className={cart.products.length === 0 ? "display-none" : ""}>
                         <Info>
                             {cart.products.map(product => (
-                                <>
+                                <div key={product._id}>
                                     <Hr />
-                                    <Product key={product._id}>
+                                    <Product>
                                         <ProductDetail>
                                             <Image src={product.img} />
                                             <Details>
@@ -250,7 +250,7 @@ const Cart = () => {
                                             <ProductPrice>$ {Math.round(product.price * product.quantity * 100) / 100}</ProductPrice>
                                         </PriceDetail>
                                     </Product>
-                                </>
+                                </div>
                             ))}
                         </Info>
                         <Summary>
